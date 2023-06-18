@@ -9,7 +9,7 @@ public class Main {
             File file = new File(
                     "F:\\Oleg\\Projects\\Java\\data-handler\\data-handler-project\\src\\main\\java\\com\\haloz\\protofile.proto"
             );
-            Scanner scanner = new Scanner(file);b v
+            Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()){
                 System.out.println(scanner.nextLine());
             }
