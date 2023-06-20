@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.Arrays;
 import java.util.UUID;
 
 public class ProtoFile {
@@ -17,7 +16,7 @@ public class ProtoFile {
             throw new IOException("File is not found");
         }
         this.data = Files.readAllBytes(file.toPath());
-        this.globalId = UUID.nameUUIDFromBytes(data);
+        this.globalId = UUID.randomUUID(); //.nameUUIDFromBytes(data)
     }
 
     public UUID getGlobalId() {
