@@ -1,6 +1,7 @@
 package com.haloz.springboot.payload;
 
 import com.google.gson.Gson;
+import com.google.protobuf.ByteString;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,13 +26,6 @@ public class ProtoFile {
 
     public byte[] getData() {
         return data;
-    }
-    public void setData(byte[] data) {
-        this.data = data;
-    }
-
-    public void setGlobalId(UUID globalId) {
-        this.globalId = globalId;
     }
 
     @Override
