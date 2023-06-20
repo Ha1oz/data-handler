@@ -13,6 +13,7 @@ public class Main {
             while (scanner.hasNextLine()){
                 System.out.println(scanner.nextLine());
             }
+            
             System.out.println("file = " + file);
             System.out.println("file.length() = " + file.length());
         } catch (Exception e) {
