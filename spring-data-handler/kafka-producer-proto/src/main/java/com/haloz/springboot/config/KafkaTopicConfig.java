@@ -1,4 +1,4 @@
-package com.haloz.springboot;
+package com.haloz.springboot.config;
 
 import com.haloz.springboot.tracker.FileMonitor;
 import org.apache.kafka.clients.admin.NewTopic;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.TopicBuilder;
 
 @Configuration
-public class kafkaTopicConfig {
+public class KafkaTopicConfig {
     @Value("${spring.kafka.topic.name}")
     private String topicName;
     @Value("${spring.kafka.interval.time}")

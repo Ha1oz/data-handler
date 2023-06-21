@@ -1,18 +1,17 @@
 package com.haloz.springboot.payload;
 
 import com.google.gson.Gson;
-import com.google.protobuf.ByteString;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.UUID;
 
-public class ProtoFile {
-    private UUID globalId;
-    private byte[] data;
+public class SendingObject {
+    private final UUID globalId;
+    private final byte[] data;
 
-    public ProtoFile(File file) throws IOException {
+    public SendingObject(File file) throws IOException {
         if (!file.isFile()) {
             throw new IOException("File is not found");
         }

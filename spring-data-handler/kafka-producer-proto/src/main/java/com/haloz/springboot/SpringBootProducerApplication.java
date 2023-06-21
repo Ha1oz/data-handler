@@ -1,5 +1,6 @@
 package com.haloz.springboot;
 
+import com.haloz.springboot.producer.ProtoFileChangesProducer;
 import com.haloz.springboot.tracker.FileListener;
 import com.haloz.springboot.tracker.FileMonitor;
 import org.springframework.beans.factory.annotation.Autowired;

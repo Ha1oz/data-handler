@@ -1,6 +1,6 @@
-package com.haloz.springboot;
+package com.haloz.springboot.producer;
 
-import com.haloz.springboot.payload.ProtoFile;
+import com.haloz.springboot.payload.SendingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,9 +20,9 @@ public class ProtoFileChangesProducer {
         this.kafkaTemplate = kafkaTemplate;
     }
     @NonNull
-    public void sendProto(ProtoFile protoFile) {
-        kafkaTemplate.send(topicName, protoFile.toString());
-        LOGGER.info(String.format("File sent -> %s", protoFile.getGlobalId()));
+    public void sendProto(SendingObject sendingObject) {
+        kafkaTemplate.send(topicName, sendingObject.toString());
+        LOGGER.info(String.format("File sent -> %s", sendingObject.getGlobalId()));
     }
 
 }

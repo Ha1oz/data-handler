@@ -1,7 +1,7 @@
 package com.haloz.springboot.tracker;
 
-import com.haloz.springboot.ProtoFileChangesProducer;
-import com.haloz.springboot.payload.ProtoFile;
+import com.haloz.springboot.producer.ProtoFileChangesProducer;
+import com.haloz.springboot.payload.SendingObject;
 import org.apache.commons.io.monitor.FileAlterationListenerAdaptor;
 import org.apache.commons.io.monitor.FileAlterationObserver;
 
@@ -40,9 +40,6 @@ public class FileListener extends FileAlterationListenerAdaptor {
         String compressedPath = file.getAbsolutePath();
         System.out.println("create：" + compressedPath);
         sendFileToKafka(file);
-        if (file.delete()) {
-            System.out.println("deleted from local");
-        }
 //        if (file.canRead()) {
 //            // TODO: Чтение или перезагрузка содержимого файлов
 //            System.out.println("file changes, processing");
@@ -68,7 +65,10 @@ public class FileListener extends FileAlterationListenerAdaptor {
     }
     private void sendFileToKafka(File file){
         try {
-            protoFileChangesProducer.sendProto(new ProtoFile(file));
+            protoFileChangesProducer.sendProto(new SendingObject(file));
+            if (file.delete()) {
+                System.out.println("deleted from local");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
