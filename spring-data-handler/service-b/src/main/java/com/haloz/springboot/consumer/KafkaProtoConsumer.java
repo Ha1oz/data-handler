@@ -1,5 +1,6 @@
 package com.haloz.springboot.consumer;
 
+import com.haloz.springboot.payload.SendingObject;
 import com.haloz.springboot.utils.Parser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +19,8 @@ public class KafkaProtoConsumer {
         LOGGER.info(String.format("Event message received -> %s", eventMessage));
         // json to byte string service
         try {
-            LOGGER.info(String.format("DATA -> %s", Parser.getDataFromMessage(eventMessage)));
+            SendingObject sendingObject = new SendingObject(eventMessage);
+            LOGGER.info(String.format("DATA -> %s", sendingObject));
         } catch (Exception e) {
             e.printStackTrace();
             // send to another topic: troubles

@@ -14,8 +14,8 @@
 	<name>spring-data-handler</name>
 	<description>Project for Spring Boot Data Handler</description>
 	<modules>
-		<module>kafka-producer-proto</module>
-        <module>kafka-service-b</module>
+		<module>service-a</module>
+        <module>service-b</module>
     </modules>
 	<packaging>pom</packaging>
 	<properties>
