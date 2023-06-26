@@ -8,18 +8,23 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import com.haloz.springboot.proto.Product;
 import org.apache.kafka.common.serialization.Serdes;
 
-public class SendingObject {
-    private final String globalId;
+import java.util.UUID;
 
+public class SendingObject {
+    private UUID globalId;
     private final ProtoCPU message;
 
     public SendingObject(String jsonStr) {
         //hardcore? TO DO: Change
         JsonElement jsonElement = extractField(jsonStr, "globalId");
-        this.globalId = jsonElement.getAsString();
+        try {
+            this.globalId = UUID.fromString(jsonElement.getAsString());
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
         message = new ProtoCPU(getBytesFromMessage(jsonStr));
     }
-    public String getGlobalId() {
+    public UUID getGlobalId() {
         return globalId;
     }
 
