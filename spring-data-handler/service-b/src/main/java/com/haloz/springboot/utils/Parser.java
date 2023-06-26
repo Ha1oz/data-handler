@@ -11,6 +11,7 @@ public class Parser {
         JsonElement jsonElement = jsonObject.get("data");
         byte[] bytes = new byte[jsonElement.getAsJsonArray().size()];
 
+
         int i = 0;
         for (JsonElement j : jsonElement.getAsJsonArray()) {
             bytes[i] = j.getAsByte();
