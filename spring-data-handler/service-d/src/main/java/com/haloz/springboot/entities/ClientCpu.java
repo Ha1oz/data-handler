@@ -1,4 +1,4 @@
-package com.haloz.springboot.payload.interfaces;
+package com.haloz.springboot.entities;
 
 public interface ClientCpu {
 

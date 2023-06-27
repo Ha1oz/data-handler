@@ -5,7 +5,6 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 public class NewsletterBase {
-    private String name = "receiver";
     private JedisPool pool;
     public NewsletterBase() {
         try{
@@ -14,9 +13,9 @@ public class NewsletterBase {
             e.printStackTrace();
          }
     }
-    public String getNewsletter(String id) {
+    public String getNewsletter(String key, String field) {
         try(Jedis jedis = pool.getResource()) {
-            return jedis.hget(name, id);
+            return jedis.hget(key, field);
         } catch(Exception e) {
             e.printStackTrace();
         }

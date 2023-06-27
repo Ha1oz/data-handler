@@ -12,7 +12,8 @@ import java.util.UUID;
 
 public class SendingObject {
     private UUID globalId;
-    private JsonObject data;
+    private final JsonObject data;
+    private final String receiver;
     public SendingObject(String jsonStr) {
         //hardcore? TO DO: Change
         JsonElement jsonElement = extractField(jsonStr, "globalId");
@@ -21,8 +22,12 @@ public class SendingObject {
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
-        JsonElement jsonElement1 = extractField(jsonStr,"data");
-        data = jsonElement1.getAsJsonObject();
+        jsonElement = extractField(jsonStr,"data");
+        data = jsonElement.getAsJsonObject();
+
+        NewsletterBase newsletterBase = new NewsletterBase();
+        JsonElement propertyId = data.get("receiverId");
+        receiver = newsletterBase.getNewsletter("receiver", propertyId.getAsString());
 
     }
     public UUID getGlobalId() {
@@ -31,10 +36,15 @@ public class SendingObject {
     public JsonObject getData() {
         return data;
     }
-    public void enrichData() {
+
+    public String getReceiver() {
+        return receiver;
+    }
+
+    public void enrichData(String baseKey, String property) {
         NewsletterBase newsletterBase = new NewsletterBase();
-        JsonElement propertyId = data.get("receiverId");
-        String res = newsletterBase.getNewsletter(propertyId.getAsString());
+        JsonElement propertyId = data.get(property);
+        String res = newsletterBase.getNewsletter(baseKey, propertyId.getAsString());
         //TO DO: is it normal?
         if (res == null) {
             res = "null";
@@ -45,7 +55,6 @@ public class SendingObject {
         JsonObject jsonObject = new Gson().fromJson(from, JsonObject.class);
         return jsonObject.get(fieldName);
     }
-
     @Override
     public String toString() {
         Gson gson = new Gson();
