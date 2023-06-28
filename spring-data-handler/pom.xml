@@ -18,6 +18,7 @@
         <module>service-b</module>
 		<module>service-c</module>
         <module>service-d</module>
+        <module>service-e</module>
     </modules>
 	<packaging>pom</packaging>
 	<properties>
