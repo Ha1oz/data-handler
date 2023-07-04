@@ -7,18 +7,18 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProducerController {
-    private final Producer producer;
-    private final TroubleProducer troubleProducer;
-
-    public ProducerController(Producer producer, TroubleProducer troubleProducer) {
-        this.producer = producer;
-        this.troubleProducer = troubleProducer;
-    }
-
-    public void sendMessage(String message) {
-        troubleProducer.sendMessage(message);
-    }
-    public void sendMessage(SendingObject data) {
-        producer.sendMessage(data);
-    }
+//    private final Producer producer;
+//    private final TroubleProducer troubleProducer;
+//
+//    public ProducerController(Producer producer, TroubleProducer troubleProducer) {
+//        this.producer = producer;
+//        this.troubleProducer = troubleProducer;
+//    }
+//
+//    public void sendMessage(String message) {
+//        troubleProducer.sendMessage(message);
+//    }
+//    public void sendMessage(SendingObject data) {
+//        producer.sendMessage(data);
+//    }
 }
