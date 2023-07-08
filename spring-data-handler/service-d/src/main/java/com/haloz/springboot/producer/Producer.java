@@ -10,21 +10,21 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class Producer {
-    @Value("${spring.kafka.topic.new.name}")
-    private String newTopicName;
-    private static final Logger LOGGER = LoggerFactory.getLogger(Producer.class);
-    private final KafkaTemplate<String, String> kafkaTemplate;
-
-    public Producer(KafkaTemplate<String, String> kafkaTemplate) {
-        this.kafkaTemplate = kafkaTemplate;
-    }
-
-    public void sendMessage(SendingObject data) {
-//        Message<SendingObject> message = MessageBuilder
-//                .withPayload(data)
-//                .setHeader(KafkaHeaders.TOPIC, "topic-b")
-//                .build();
-        kafkaTemplate.send(newTopicName, data.toString());
-        LOGGER.info(String.format("Message sent -> %s", data));
-    }
+//    @Value("${spring.kafka.topic.new.name}")
+//    private String newTopicName;
+//    private static final Logger LOGGER = LoggerFactory.getLogger(Producer.class);
+//    private final KafkaTemplate<String, String> kafkaTemplate;
+//
+//    public Producer(KafkaTemplate<String, String> kafkaTemplate) {
+//        this.kafkaTemplate = kafkaTemplate;
+//    }
+//
+//    public void sendMessage(SendingObject data) {
+////        Message<SendingObject> message = MessageBuilder
+////                .withPayload(data)
+////                .setHeader(KafkaHeaders.TOPIC, "topic-b")
+////                .build();
+//        kafkaTemplate.send(newTopicName, data.toString());
+//        LOGGER.info(String.format("Message sent -> %s", data));
+//    }
 }

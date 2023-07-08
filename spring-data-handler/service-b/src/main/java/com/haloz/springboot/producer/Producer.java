@@ -11,8 +11,6 @@ import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 @Service
 public class Producer {
-//    @Value("${spring.kafka.topic.new.name}")
-//    private String newTopicName;
 //    private static final Logger LOGGER = LoggerFactory.getLogger(Producer.class);
 //    private final KafkaTemplate<String, String> kafkaTemplate;
 //
@@ -20,12 +18,12 @@ public class Producer {
 //        this.kafkaTemplate = kafkaTemplate;
 //    }
 //
-//    public void sendMessage(SendingObject data) {
+//    public void sendMessage(String data) {
 ////        Message<SendingObject> message = MessageBuilder
 ////                .withPayload(data)
 ////                .setHeader(KafkaHeaders.TOPIC, "topic-b")
 ////                .build();
-//        kafkaTemplate.send(newTopicName, data.toString());
+//        kafkaTemplate.send("topic-b", data);
 //        LOGGER.info(String.format("Message sent -> %s", data));
 //    }
 }

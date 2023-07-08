@@ -16,7 +16,7 @@ public class SendingObject {
     private final String receiver;
     public SendingObject(String jsonStr) {
         //hardcore? TO DO: Change
-        JsonElement jsonElement = extractField(jsonStr, "globalId");
+        JsonElement jsonElement = extractField(jsonStr, "globalId");;
         try {
             this.globalId = UUID.fromString(jsonElement.getAsString());
         } catch (IllegalArgumentException e) {
