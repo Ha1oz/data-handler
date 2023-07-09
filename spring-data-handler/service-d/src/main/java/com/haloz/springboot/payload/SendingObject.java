@@ -1,7 +1,7 @@
 package com.haloz.springboot.payload;
 
 import com.google.gson.Gson;
-import com.haloz.springboot.entities.ClientCpu;
+import com.haloz.springboot.entities.interfaces.ClientCpu;
 import com.haloz.springboot.service.ClientConverter;
 import com.haloz.springboot.utils.GetData;
 

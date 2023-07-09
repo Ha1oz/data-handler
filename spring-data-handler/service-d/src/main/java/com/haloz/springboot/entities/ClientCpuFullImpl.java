@@ -1,6 +1,7 @@
 package com.haloz.springboot.entities;
 
 import com.google.gson.Gson;
+import com.haloz.springboot.entities.interfaces.ClientCpu;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

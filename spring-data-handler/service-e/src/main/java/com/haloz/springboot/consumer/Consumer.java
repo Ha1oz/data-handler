@@ -17,13 +17,14 @@ public class Consumer {
     }
 
     @KafkaListener(
-            topics = "${spring.kafka.topic.name}",
-            groupId = "${spring.kafka.consumer.group-id}"
+            topics = "topic-d",
+            groupId = "myGroup-3"
     )
     public void consume(String eventMessage) {
-        LOGGER.info(String.format("Event message received -> %s", eventMessage));
+        LOGGER.info(String.format("Event message is read <- %s", eventMessage));
         try {
             fileController.writeFile(eventMessage);
+            LOGGER.info(String.format("Event message is written -> %s", eventMessage));
         } catch (Exception e) {
             e.printStackTrace();
         }
