@@ -1,12 +1,15 @@
 package com.haloz.springboot.config;
 
 import com.haloz.springboot.entities.ClientCpuFullImpl;
+import com.haloz.springboot.entities.ClientCpuImpl;
 import com.haloz.springboot.payload.SendingObject;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.KStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -21,6 +24,7 @@ import java.util.Map;
 @EnableKafka
 @EnableKafkaStreams
 public class StreamConfig {
+    private final static Logger LOGGER = LoggerFactory.getLogger(StreamConfig.class);
     @Bean(name = KafkaStreamsDefaultConfiguration.DEFAULT_STREAMS_CONFIG_BEAN_NAME)
     public KafkaStreamsConfiguration kStreamsConfigs() {
         Map<String, Object> props = new HashMap<>();
@@ -38,10 +42,12 @@ public class StreamConfig {
                 .stream("topic-c", Consumed.with(Serdes.String(), Serdes.String())); // src - name of the enter topic, reading in come msg
         // logic
         KStream<String, String> userStream = stream
+                .peek((key, value) -> LOGGER.info("Event message is read <- " + value))
                 .mapValues(k -> {
-                    SendingObject so = new SendingObject(k, ClientCpuFullImpl.class);
+                    SendingObject so = new SendingObject(k, ClientCpuImpl.class);
                     return so.toString();
-                });
+                })
+                .peek((key, value) -> LOGGER.info("Event message is sent -> " + value));;
         //out
         userStream.to("topic-d");
         return userStream;
